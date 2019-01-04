@@ -21,7 +21,7 @@ namespace Alura.Leilao.Core
                 {
                     MaiorLance = lance.Valor;
                 }
-                else if (lance.Valor < MenorLance)
+                if (lance.Valor < MenorLance)
                 {
                     MenorLance = lance.Valor;
                 }
