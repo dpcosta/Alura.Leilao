@@ -5,6 +5,17 @@ namespace Alura.Leilao.ConsoleApp
 {
     class Program
     {
+        private const string MSG_OK = "Valor esperado ({0}) confirmado!";
+        private const string MSG_FALHA = "Erro! Valor esperado: {0}, valor retornado: {1}";
+
+        static void Verifica(double valorEsperado, double valorRetornado)
+        {
+            if (Math.Abs(valorEsperado - valorRetornado) < 0.0001)
+                Console.WriteLine(MSG_OK, valorEsperado);
+            else
+                Console.WriteLine(MSG_FALHA, valorEsperado, valorRetornado);
+        }
+
         static void Main()
         {
             var joao = new Cliente("João de Miranda");
@@ -18,15 +29,8 @@ namespace Alura.Leilao.ConsoleApp
             var leiloeiro = new Avaliador(leilao);
             leiloeiro.Avalia();
 
-            if (Math.Abs(1350 - leiloeiro.MaiorLance) < 0.0001)
-                Console.WriteLine("Maior lance verificado");
-            else
-                Console.Error.WriteLine("Maior lance diferente de 1350!");
-
-            if (Math.Abs(1200 - leiloeiro.MenorLance) < 0.0001)
-                Console.WriteLine("Menor lance verificado");
-            else
-                Console.Error.WriteLine("Menor lance diferente de 1200!");
+            Verifica(1350, leiloeiro.MaiorLance);
+            Verifica(1200, leiloeiro.MenorLance);
 
         }
     }
