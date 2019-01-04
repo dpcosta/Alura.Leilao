@@ -15,6 +15,11 @@ namespace Alura.Leilao.Core
 
         public void Avalia()
         {
+            if (Leilao.Lances.Count == 0)
+            {
+                MaiorLance = 0;
+                MenorLance = 0;
+            }
             foreach (var lance in Leilao.Lances)
             {
                 if (lance.Valor > MaiorLance)
