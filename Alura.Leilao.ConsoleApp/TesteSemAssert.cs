@@ -7,19 +7,19 @@ namespace Alura.Leilao.ConsoleApp
     {
         static void Main()
         {
-            var joao = new Cliente("João de Miranda");
-            var pedro = new Cliente("Pedro Silveira");
-            var malu = new Cliente("Malu Pereira");
             var leilao = new Alura.Leilao.Core.Leilao("Obra de Rembrant");
-            leilao.Propoe(new Lance(pedro, 1300));
-            leilao.Propoe(new Lance(malu, 1350));
-            leilao.Propoe(new Lance(joao, 1200));
 
-            var leiloeiro = new Avaliador(leilao);
-            leiloeiro.Avalia();
+            var joao = new Interessado("João de Miranda", leilao);
+            var pedro = new Interessado("Pedro Silveira", leilao);
+            var malu = new Interessado("Malu Pereira", leilao);
 
-            Console.WriteLine(leiloeiro.MenorLance);
-            Console.WriteLine(leiloeiro.MaiorLance);
+            pedro.Oferece(1300);
+            malu.Oferece(1350);
+            joao.Oferece(1200);
+
+            var resultado = leilao.Termina();
+
+            Console.WriteLine(resultado.MelhorLance.Valor);
         }
     }
 }

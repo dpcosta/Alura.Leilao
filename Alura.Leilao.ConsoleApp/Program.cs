@@ -27,37 +27,45 @@ namespace Alura.Leilao.ConsoleApp
         static void AvaliaLeilaoComTresLances()
         {
             Console.WriteLine(nameof(AvaliaLeilaoComTresLances));
-            var joao = new Cliente("João de Miranda");
-            var pedro = new Cliente("Pedro Silveira");
-            var malu = new Cliente("Malu Pereira");
+
+            //leilão é criado com peça vinculada
             var leilao = new Alura.Leilao.Core.Leilao("Obra de Rembrant");
-            leilao.Propoe(new Lance(pedro, 1300));
-            leilao.Propoe(new Lance(malu, 1350));
-            leilao.Propoe(new Lance(joao, 1200));
 
-            var leiloeiro = new Avaliador(leilao);
-            leiloeiro.Avalia();
+            //aparecem interessados no leilão...
+            var joao = new Interessado("João de Miranda", leilao);
+            var pedro = new Interessado("Pedro Silveira", leilao);
+            var malu = new Interessado("Malu Pereira", leilao);
 
-            Verifica(1350, leiloeiro.MaiorLance);
-            Verifica(900, leiloeiro.MenorLance);
+            //leilão começa e os interessados dão lances...
+            pedro.Oferece(1300);
+            malu.Oferece(1350);
+            joao.Oferece(1200);
+
+            //leilão termina...
+            var resultado = leilao.Termina();
+
+            //...e conhecemos seu ganhador!
+            Verifica(1350, resultado.MelhorLance.Valor);
+            //Verifica(malu.Nome, leilao.MelhorLance.Cliente.Nome);
+
             Console.WriteLine("");
         }
 
         static void AvaliaLeilaoComLancesDoMesmoCliente()
         {
             Console.WriteLine(nameof(AvaliaLeilaoComLancesDoMesmoCliente));
-            var joao = new Cliente("João de Miranda");
             var leilao = new Alura.Leilao.Core.Leilao("Obra de Dalí");
-            leilao.Propoe(new Lance(joao, 900));
-            leilao.Propoe(new Lance(joao, 1200));
-            leilao.Propoe(new Lance(joao, 1300));
-            leilao.Propoe(new Lance(joao, 1350));
 
-            var leiloeiro = new Avaliador(leilao);
-            leiloeiro.Avalia();
+            var joao = new Interessado("João de Miranda", leilao);
 
-            Verifica(1350, leiloeiro.MaiorLance);
-            Verifica(900, leiloeiro.MenorLance);
+            joao.Oferece(900);
+            joao.Oferece(1200);
+            joao.Oferece(1300);
+            joao.Oferece(1350);
+
+            var resultado = leilao.Termina();
+
+            Verifica(1350, resultado.MelhorLance.Valor);
             Console.WriteLine("");
         }
 

@@ -7,7 +7,7 @@ namespace Alura.Leilao.Core
     /// </summary>
     public class Lance
     {
-        public Cliente Cliente { get; }
+        public Interessado Cliente { get; }
         public double Valor { get; }
 
         /// <summary>
@@ -16,7 +16,7 @@ namespace Alura.Leilao.Core
         /// <param name="cliente"> <see cref="Cliente"/> que propõe o lance.</param>
         /// <param name="valor"> Valor proposto para o lance. Deve ser maior que zero.</param>
         /// <exception cref="ArgumentException"> Exceção lançada se o valor for menor que zero.</exception>
-        public Lance(Cliente cliente, double valor)
+        public Lance(Interessado cliente, double valor)
         {
             Cliente = cliente;
             if (valor < 0)

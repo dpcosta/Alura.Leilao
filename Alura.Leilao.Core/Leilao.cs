@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Alura.Leilao.Core
 {
@@ -31,9 +32,14 @@ namespace Alura.Leilao.Core
         /// Quando ocorre uma oferta de <see cref="Lance"/>.
         /// </summary>
         /// <param name="lance"> Lance sendo dado.</param>
-        public void Propoe(Lance lance)
+        public void RecebeOfertaDe(Lance lance)
         {
             Lances.Add(lance);
+        }
+
+        public ResultadoLeilao Termina()
+        {
+            return new ResultadoLeilao(this);
         }
     }
 }
