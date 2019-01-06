@@ -3,6 +3,12 @@ using System.Linq;
 
 namespace Alura.Leilao.Core
 {
+    public enum StatusLeilao
+    {
+        LeilaoEmAndamento,
+        LeilaoFinalizado
+    }
+
     /// <summary>
     /// Venda de um bem definido em <see cref="Descricao"/> pela melhor oferta de <see cref="Lance"/>.
     /// </summary>
@@ -12,11 +18,13 @@ namespace Alura.Leilao.Core
         /// Bem sendo leiloado.
         /// </summary>
         public string Descricao { get; }
-        
+
         /// <summary>
         /// Lances dados no leilão.
         /// </summary>
         public IList<Lance> Lances { get; }
+
+        public StatusLeilao Status { get; private set; }
 
         /// <summary>
         /// Cria uma instância de <see cref="Leilao"/> para <paramref name="descricao"/>.
@@ -26,6 +34,7 @@ namespace Alura.Leilao.Core
         {
             Descricao = descricao;
             Lances = new List<Lance>();
+            Status = StatusLeilao.LeilaoEmAndamento;
         }
 
         /// <summary>
@@ -34,11 +43,15 @@ namespace Alura.Leilao.Core
         /// <param name="lance"> Lance sendo dado.</param>
         public void RecebeOfertaDe(Lance lance)
         {
-            Lances.Add(lance);
+            if (Status == StatusLeilao.LeilaoEmAndamento)
+            {
+                Lances.Add(lance);
+            }
         }
 
         public ResultadoLeilao Termina()
         {
+            Status = StatusLeilao.LeilaoFinalizado;
             return new ResultadoLeilao(this);
         }
     }
