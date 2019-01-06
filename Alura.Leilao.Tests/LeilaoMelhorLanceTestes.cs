@@ -6,49 +6,41 @@ namespace Alura.Leilao.Tests
 {
     public class LeilaoMelhorLanceTestes
     {
+        //primeira tentativa de não repetir código...
+        private Core.Leilao CriaLeilao(string peca, double[] ofertas)
+        {
+            var leilao = new Core.Leilao(peca);
+            var interessado = new Interessado("Fulano", leilao);
+            foreach (var oferta in ofertas)
+            {
+                interessado.Oferece(oferta);
+            }
+            return leilao;
+        }
+
         [Fact]
         public void TestaMaiorEMenorLances()
         {
-            var leilao = new Alura.Leilao.Core.Leilao("Obra de Rembrant");
-
-            var joao = new Interessado("João de Miranda", leilao);
-            var pedro = new Interessado("Pedro Silveira", leilao);
-            var malu = new Interessado("Malu Pereira", leilao);
-
-            pedro.Oferece(1300);
-            malu.Oferece(1350);
-            joao.Oferece(1200);
-
+            var leilao = CriaLeilao("Obra de Rembrant", new double[] { 1300, 1350, 1200 });
             var resultado = leilao.Termina();
-
             Assert.Equal(1350, resultado.MelhorLance.Valor);
         }
 
         [Fact]
         public void TestaLeilaoComClienteUnico()
         {
-            var leilao = new Alura.Leilao.Core.Leilao("Obra de Rembrant");
-
-            var joao = new Interessado("João de Miranda", leilao);
-
-            joao.Oferece(1200);
-            joao.Oferece(1300);
-            joao.Oferece(1350);
-            joao.Oferece(900);
+            var leilao = CriaLeilao("Obra de Rembrant", new double[] { 1200, 1300, 1350, 900 });
 
             var resultado = leilao.Termina();
 
             Assert.Equal(1350, resultado.MelhorLance.Valor);
-            Assert.Equal(joao.Nome, resultado.MelhorLance.Cliente.Nome);
+            Assert.Equal("Fulano", resultado.MelhorLance.Cliente.Nome);
         }
 
         [Fact]
         public void TestaLeilaoComLanceUnico()
         {
-            var leilao = new Alura.Leilao.Core.Leilao("Obra de Rembrant");
-            var joao = new Interessado("João de Miranda", leilao);
-
-            joao.Oferece(1200);
+            var leilao = CriaLeilao("Obra de Rembrant", new double[] { 1200 });
 
             var resultado = leilao.Termina();
 
@@ -58,8 +50,7 @@ namespace Alura.Leilao.Tests
         [Fact]
         public void MaiorLanceRetornaZeroQuandoNaoHaLances()
         {
-            var leilao = new Core.Leilao("Escultura de Aleijadinho");
-            var joao = new Interessado("João de Miranda", leilao);
+            var leilao = CriaLeilao("Escultura de Aleijadinho", new double[] { });
 
             var resultado = leilao.Termina();
 
@@ -80,7 +71,6 @@ namespace Alura.Leilao.Tests
             double maiorLanceEsperado,
             params double[] ofertas)
         {
-            double[] teste = { };
             var leilao = new Core.Leilao("Escultura de Aleijadinho");
             var joao = new Interessado("João de Miranda", leilao);
 
