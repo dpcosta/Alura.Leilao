@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B585FAA2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Leilao.ConsoleApp", "Alura.Leilao.ConsoleApp\Alura.Leilao.ConsoleApp.csproj", "{766C772F-A987-4F26-BC8E-E13AF0781491}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alura.Leilao.Tests", "Alura.Leilao.Tests\Alura.Leilao.Tests.csproj", "{6DC4B8D6-F6ED-488A-A468-95AB9B48EEE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Leilao.Tests", "Alura.Leilao.Tests\Alura.Leilao.Tests.csproj", "{6DC4B8D6-F6ED-488A-A468-95AB9B48EEE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
