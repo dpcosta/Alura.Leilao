@@ -5,6 +5,14 @@ namespace Alura.Leilao.Tests
 {
     public class LeilaoTermina
     {
+        [Fact]
+        public void ColocaLeilaoComoFinalizado()
+        {
+            var leilao = new Core.Leilao("Peça qualquer");
+            leilao.Termina();
+            Assert.Equal(StatusLeilao.LeilaoFinalizado, leilao.Status);
+        }
+
         [Trait("Category", "Unit Tests")]
         [Fact]
         public void RetornaResultadoNaoNulo()
@@ -35,7 +43,7 @@ namespace Alura.Leilao.Tests
         {
             var leilao = new Core.Leilao("Pintura de Dalí");
             var joao = new Interessado("João de Miranda", leilao);
-
+            leilao.Inicia();
             foreach (var oferta in ofertas)
             {
                 joao.Oferece(oferta);
