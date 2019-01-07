@@ -12,7 +12,7 @@ namespace Alura.Leilao.Tests
 
     public class CalculadoraTestes
     {
-        [Theory]
+        [Theory(Skip = "Não faz parte do negócio.")]
         [InlineData(1,1,2)]
         [InlineData(2,2,4)]
         [InlineData(0,1,1)]

@@ -13,25 +13,6 @@ namespace Alura.Leilao.Tests
             Assert.NotNull(resultado);
         }
 
-        [Theory]
-        [InlineData(new double[] { })]
-        [InlineData(new double[] { 1200 })]
-        [InlineData(new double[] { 1200, 1300, 1350, 900 })]
-        public void RetornaResultadoValido(double[] ofertas)
-        {
-            var leilao = new Core.Leilao("Pintura de Dalí");
-            var joao = new Interessado("João de Miranda", leilao);
-
-            foreach (var oferta in ofertas)
-            {
-                joao.Oferece(oferta);
-            }
-
-            var resultado = leilao.Termina();
-
-            Assert.NotNull(resultado);
-        }
-
         [Fact]
         public void DepoisDeInvocadoNaoPermiteNovosLances()
         {
@@ -40,30 +21,6 @@ namespace Alura.Leilao.Tests
             new Interessado("Fulano", leilao).Oferece(250);
             Assert.Equal(0, leilao.Lances.Count);
         }
-
-        [Theory]
-        [InlineData(new double[] { })]
-        [InlineData(new double[] { 1200 })]
-        [InlineData(new double[] { 1200, 1300, 1350, 900 })]
-        public void DepoisDeChamadoNaoPermiteNovosLances(
-            double[] ofertas)
-        {
-            var leilao = new Core.Leilao("Pintura de Dalí");
-            var joao = new Interessado("João de Miranda", leilao);
-
-            foreach (var oferta in ofertas)
-            {
-                joao.Oferece(oferta);
-            }
-
-            var qtdeLancesNoLeilao = leilao.Lances.Count;
-            var resultado = leilao.Termina();
-
-            joao.Oferece(double.MaxValue);
-
-            Assert.Equal(qtdeLancesNoLeilao, leilao.Lances.Count);
-        }
-
 
         [Theory]
         [InlineData(0, new double[] { })]
