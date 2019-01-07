@@ -5,6 +5,7 @@ namespace Alura.Leilao.Tests
 {
     public class LeilaoTermina
     {
+        [Trait("Category", "Unit Tests")]
         [Fact]
         public void RetornaResultadoNaoNulo()
         {
@@ -13,6 +14,7 @@ namespace Alura.Leilao.Tests
             Assert.NotNull(resultado);
         }
 
+        [Trait("Category", "Unit Tests")]
         [Fact]
         public void DepoisDeInvocadoNaoPermiteNovosLances()
         {
@@ -22,6 +24,7 @@ namespace Alura.Leilao.Tests
             Assert.Equal(0, leilao.Lances.Count);
         }
 
+        [Trait("Category", "Unit Tests")]
         [Theory]
         [InlineData(0, new double[] { })]
         [InlineData(1200, new double[] { 1200 })]
