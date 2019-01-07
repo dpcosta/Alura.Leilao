@@ -36,6 +36,7 @@ namespace Alura.Leilao.Tests
             var leilao = new Core.Leilao("Pintura de Dalí");
             var joao = new Interessado("João de Miranda", leilao);
 
+            leilao.Inicia();
             foreach (var oferta in ofertas)
             {
                 joao.Oferece(oferta);

@@ -5,6 +5,7 @@ namespace Alura.Leilao.Core
 {
     public enum StatusLeilao
     {
+        LeilaoAntesPregao,
         LeilaoEmAndamento,
         LeilaoFinalizado
     }
@@ -34,7 +35,7 @@ namespace Alura.Leilao.Core
         {
             Descricao = descricao;
             Lances = new List<Lance>();
-            Status = StatusLeilao.LeilaoEmAndamento;
+            Status = StatusLeilao.LeilaoAntesPregao;
         }
 
         /// <summary>
@@ -47,6 +48,11 @@ namespace Alura.Leilao.Core
             {
                 Lances.Add(lance);
             }
+        }
+
+        public void Inicia()
+        {
+            Status = StatusLeilao.LeilaoEmAndamento;
         }
 
         public ResultadoLeilao Termina()
