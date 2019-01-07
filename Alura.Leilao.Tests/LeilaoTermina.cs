@@ -1,3 +1,4 @@
+using System.Linq;
 using Xunit;
 using Alura.Leilao.Core;
 
@@ -34,12 +35,13 @@ namespace Alura.Leilao.Tests
             double[] ofertas)
         {
             var leilao = new Core.Leilao("Pintura de Dalí");
-            var joao = new Interessado("João de Miranda", leilao);
 
             leilao.Inicia();
             foreach (var oferta in ofertas)
             {
-                joao.Oferece(oferta);
+                leilao.RecebeOferta(
+                    new Lance(new Interessado("Fulano", leilao), oferta)
+                );
             }
 
             var resultado = leilao.Termina();

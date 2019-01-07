@@ -18,8 +18,8 @@ namespace Alura.Leilao.Tests
         {
             var leilao = new Core.Leilao("Peça qualquer");
             var joao = new Interessado("Fulano de tal", leilao);
-            leilao.RecebeOfertaDe(new Lance(joao, 901));
-            leilao.RecebeOfertaDe(new Lance(joao, 1349));
+            leilao.RecebeOferta(new Lance(joao, 901));
+            leilao.RecebeOferta(new Lance(joao, 1349));
             Assert.Equal(0, leilao.Lances.Count);
         }
 
@@ -28,9 +28,10 @@ namespace Alura.Leilao.Tests
         {
             var leilao = new Core.Leilao("Peça qualquer");
             var joao = new Interessado("Fulano de tal", leilao);
+            var maria = new Interessado("Maria", leilao);
             leilao.Inicia();
-            leilao.RecebeOfertaDe(new Lance(joao, 901));
-            leilao.RecebeOfertaDe(new Lance(joao, 1349));
+            leilao.RecebeOferta(new Lance(joao, 901));
+            leilao.RecebeOferta(new Lance(maria, 1349));
             Assert.Equal(2, leilao.Lances.Count);
         }
     }
