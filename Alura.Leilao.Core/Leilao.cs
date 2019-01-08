@@ -68,6 +68,10 @@ namespace Alura.Leilao.Core
 
         public ResultadoLeilao Termina()
         {
+            if (Status == StatusLeilao.LeilaoAntesPregao)
+            {
+                throw new InvalidOperationException("Leilão não pode ser finalizado antes do pregão começar.");
+            }
             Status = StatusLeilao.LeilaoFinalizado;
             return new ResultadoLeilao(this);
         }

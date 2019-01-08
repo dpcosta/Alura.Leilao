@@ -1,4 +1,4 @@
-using System.Linq;
+using System;
 using Xunit;
 using Alura.Leilao.Core;
 
@@ -11,6 +11,7 @@ namespace Alura.Leilao.Tests
         public void RetornaResultadoNaoNulo()
         {
             var leilao = new Core.Leilao("Peça qualquer");
+            leilao.Inicia();
             var resultado = leilao.Termina();
             Assert.NotNull(resultado);
         }
@@ -20,6 +21,7 @@ namespace Alura.Leilao.Tests
         public void DepoisDeInvocadoNaoPermiteNovosLances()
         {
             var leilao = new Core.Leilao("Peça qualquer");
+            leilao.Inicia();
             var resultado = leilao.Termina();
             new Interessado("Fulano", leilao).Oferece(250);
             Assert.Equal(0, leilao.Lances.Count);
@@ -53,15 +55,11 @@ namespace Alura.Leilao.Tests
         public void DadoLeilaoAntesPregaoDeveLancarInvalidOperationException()
         {
             var leilao = new Core.Leilao("Peça qualquer");
-            try
-            {
-                leilao.Termina();
-                Assert.False(true, "Exceção não foi lançada!");
-            }
-            catch (System.Exception e)
-            {
-                Assert.IsType<System.InvalidOperationException>(e);
-            }
+            var excecaoEsperada = Assert
+                .Throws<InvalidOperationException>(() => leilao.Termina());
+            Assert.Equal(
+                "Leilão não pode ser finalizado antes do pregão começar.",
+                excecaoEsperada.Message);
         }
     }
 }
