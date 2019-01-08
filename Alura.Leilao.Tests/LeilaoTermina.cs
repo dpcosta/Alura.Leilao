@@ -51,6 +51,26 @@ namespace Alura.Leilao.Tests
             Assert.Equal(maiorLanceEsperado, resultado.MelhorLance.Valor);
         }
 
+        [Theory]
+        [InlineData(1250, 1200, new double[] { 800, 1150, 1300, 1250 })]
+        public void RetornaOfertaSuperiorMaisProxima(
+            double valorEsperado,
+            double valorDestino,
+            double[] ofertas)
+        {
+            var leilao = new Core.Leilao("Peça qualquer");
+            leilao.Inicia();
+            foreach (var oferta in ofertas)
+            {
+                var interessado = new Interessado("Fulano", leilao);
+                var lance = new Lance(interessado, oferta);
+                leilao.RecebeOferta(lance);
+            }
+
+            var resultado = leilao.Termina();
+            Assert.Equal(valorEsperado, resultado.MelhorLance.Valor);
+        }
+
         [Fact]
         public void DadoLeilaoAntesPregaoDeveLancarInvalidOperationException()
         {
