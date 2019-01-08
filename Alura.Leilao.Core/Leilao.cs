@@ -16,8 +16,6 @@ namespace Alura.Leilao.Core
     /// </summary>
     public class Leilao
     {
-        private Interessado _ultimoCliente;
-
         /// <summary>
         /// Bem sendo leiloado.
         /// </summary>
@@ -49,15 +47,18 @@ namespace Alura.Leilao.Core
         {
             if (Status == StatusLeilao.LeilaoEmAndamento)
             {
-                if (_ultimoCliente == null || _ultimoCliente != lance.Cliente)
+                if (OfertaFoiAceita(lance))
                 {
-                    if (!Lances.Any(l => l.Cliente == lance.Cliente && l.Valor > lance.Valor))
-                    {
-                        Lances.Add(lance);
-                        _ultimoCliente = lance.Cliente;
-                    }
+                    Lances.Add(lance);
                 }
             }
+        }
+
+        private bool OfertaFoiAceita(Lance lance)
+        {
+            return
+                (Lances.UltimoLanceNaoEhDoCliente(lance)) &&
+                (Lances.ClienteNuncaDeuLanceMaior(lance));
         }
 
         public void Inicia()
