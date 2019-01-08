@@ -48,5 +48,20 @@ namespace Alura.Leilao.Tests
 
             Assert.Equal(maiorLanceEsperado, resultado.MelhorLance.Valor);
         }
+
+        [Fact]
+        public void DadoLeilaoAntesPregaoDeveLancarInvalidOperationException()
+        {
+            var leilao = new Core.Leilao("Peça qualquer");
+            try
+            {
+                leilao.Termina();
+                Assert.False(true, "Exceção não foi lançada!");
+            }
+            catch (System.Exception e)
+            {
+                Assert.IsType<System.InvalidOperationException>(e);
+            }
+        }
     }
 }
