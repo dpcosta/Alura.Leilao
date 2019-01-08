@@ -22,7 +22,7 @@
 
         public void Oferece(double valor)
         {
-            Leilao.RecebeOfertaDe(new Lance(this, valor));
+            Leilao.RecebeOferta(new Lance(this, valor));
         }
     }
 }

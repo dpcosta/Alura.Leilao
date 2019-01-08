@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Alura.Leilao.Core
 {
     public enum StatusLeilao
     {
+        LeilaoAntesPregao,
         LeilaoEmAndamento,
         LeilaoFinalizado
     }
@@ -14,6 +16,8 @@ namespace Alura.Leilao.Core
     /// </summary>
     public class Leilao
     {
+        private Interessado _ultimoCliente;
+
         /// <summary>
         /// Bem sendo leiloado.
         /// </summary>
@@ -34,19 +38,31 @@ namespace Alura.Leilao.Core
         {
             Descricao = descricao;
             Lances = new List<Lance>();
-            Status = StatusLeilao.LeilaoEmAndamento;
+            Status = StatusLeilao.LeilaoAntesPregao;
         }
 
         /// <summary>
         /// Quando ocorre uma oferta de <see cref="Lance"/>.
         /// </summary>
         /// <param name="lance"> Lance sendo dado.</param>
-        public void RecebeOfertaDe(Lance lance)
+        public void RecebeOferta(Lance lance)
         {
             if (Status == StatusLeilao.LeilaoEmAndamento)
             {
-                Lances.Add(lance);
+                if (_ultimoCliente == null || _ultimoCliente != lance.Cliente)
+                {
+                    if (!Lances.Any(l => l.Cliente == lance.Cliente && l.Valor > lance.Valor))
+                    {
+                        Lances.Add(lance);
+                        _ultimoCliente = lance.Cliente;
+                    }
+                }
             }
+        }
+
+        public void Inicia()
+        {
+            Status = StatusLeilao.LeilaoEmAndamento;
         }
 
         public ResultadoLeilao Termina()
