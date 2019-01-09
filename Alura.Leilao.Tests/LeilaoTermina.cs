@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using Xunit;
 using Alura.Leilao.Core;
 using System.Globalization;
@@ -12,7 +12,7 @@ namespace Alura.Leilao.Tests
         [Fact]
         public void RetornaResultadoNaoNulo()
         {
-            var leilao = new Core.Leilao("PeÁa qualquer");
+            var leilao = new Core.Leilao("Pe√ßa qualquer");
             leilao.Inicia();
             var resultado = leilao.Termina();
             Assert.NotNull(resultado);
@@ -22,7 +22,7 @@ namespace Alura.Leilao.Tests
         [Fact]
         public void DepoisDeInvocadoNaoPermiteNovosLances()
         {
-            var leilao = new Core.Leilao("PeÁa qualquer");
+            var leilao = new Core.Leilao("Pe√ßa qualquer");
             leilao.Inicia();
             var resultado = leilao.Termina();
             new Interessado("Fulano", leilao).Oferece(250);
@@ -38,7 +38,7 @@ namespace Alura.Leilao.Tests
             double maiorLanceEsperado,
             double[] ofertas)
         {
-            var leilao = new Core.Leilao("Pintura de DalÌ");
+            var leilao = new Core.Leilao("Pintura de Dal√≠");
 
             leilao.Inicia();
             foreach (var oferta in ofertas)
@@ -62,7 +62,7 @@ namespace Alura.Leilao.Tests
             double valorDestino,
             double[] ofertas)
         {
-            var leilao = new Core.Leilao("PeÁa qualquer", valorDestino);
+            var leilao = new Core.Leilao("Pe√ßa qualquer", valorDestino);
             leilao.Inicia();
             foreach (var oferta in ofertas)
             {
@@ -78,17 +78,13 @@ namespace Alura.Leilao.Tests
         [Fact]
         public void DadoLeilaoAntesPregaoDeveLancarInvalidOperationException()
         {
-            var leilao = new Core.Leilao("PeÁa qualquer");
+            var leilao = new Core.Leilao("Pe√ßa qualquer");
             var excecaoRetornada = Assert
                 .Throws<InvalidOperationException>(() => leilao.Termina());
-            var mensagemEsperada = "Leil„o n„o pode ser finalizado antes do preg„o comeÁar.";
+            var mensagemEsperada = "Leil√£o n√£o pode ser finalizado antes do preg√£o come√ßar.";
             Assert.Equal(
-                0,
-                String.Compare(
-                    strA: mensagemEsperada,
-                    strB: excecaoRetornada.Message, 
-                    ignoreCase: false,
-                    culture: new CultureInfo("pt-BR"))
+                mensagemEsperada,
+                excecaoRetornada.Message
             );
         }
     }
