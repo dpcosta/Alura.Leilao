@@ -2,6 +2,7 @@ using System;
 using Xunit;
 using Alura.Leilao.Core;
 using System.Globalization;
+using System.Threading;
 
 namespace Alura.Leilao.Tests
 {
@@ -78,12 +79,17 @@ namespace Alura.Leilao.Tests
         public void DadoLeilaoAntesPregaoDeveLancarInvalidOperationException()
         {
             var leilao = new Core.Leilao("Peça qualquer");
-            var excecaoEsperada = Assert
+            var excecaoRetornada = Assert
                 .Throws<InvalidOperationException>(() => leilao.Termina());
-            CultureInfo.CurrentCulture = new CultureInfo("pt-BR");
+            var mensagemEsperada = "Leilão não pode ser finalizado antes do pregão começar.";
             Assert.Equal(
-                "Leilão não pode ser finalizado antes do pregão começar.",
-                excecaoEsperada.Message);
+                0,
+                String.Compare(
+                    strA: mensagemEsperada,
+                    strB: excecaoRetornada.Message, 
+                    ignoreCase: false,
+                    culture: new CultureInfo("pt-BR"))
+            );
         }
     }
 }
