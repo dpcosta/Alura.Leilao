@@ -62,7 +62,7 @@ namespace Alura.Leilao.Tests
             double valorDestino,
             double[] ofertas)
         {
-            var leilao = new Core.Leilao("Peça qualquer", valorDestino);
+            var leilao = new Core.Leilao("Peça qualquer", new OfertaSuperiorMaisProxima(valorDestino));
             leilao.Inicia();
             foreach (var oferta in ofertas)
             {
