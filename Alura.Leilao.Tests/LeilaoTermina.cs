@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using Alura.Leilao.Core;
+using System.Globalization;
 
 namespace Alura.Leilao.Tests
 {
@@ -79,6 +80,7 @@ namespace Alura.Leilao.Tests
             var leilao = new Core.Leilao("Peça qualquer");
             var excecaoEsperada = Assert
                 .Throws<InvalidOperationException>(() => leilao.Termina());
+            CultureInfo.CurrentCulture = new CultureInfo("pt-BR");
             Assert.Equal(
                 "Leilão não pode ser finalizado antes do pregão começar.",
                 excecaoEsperada.Message);
