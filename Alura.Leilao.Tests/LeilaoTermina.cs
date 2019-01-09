@@ -52,13 +52,15 @@ namespace Alura.Leilao.Tests
         }
 
         [Theory]
+        [InlineData(0, 900, new double[] { 800, 870, 880 })]
+        [InlineData(900, 890, new double[] { 900 })]
         [InlineData(1250, 1200, new double[] { 800, 1150, 1300, 1250 })]
         public void RetornaOfertaSuperiorMaisProxima(
             double valorEsperado,
             double valorDestino,
             double[] ofertas)
         {
-            var leilao = new Core.Leilao("Peça qualquer");
+            var leilao = new Core.Leilao("Peça qualquer", valorDestino);
             leilao.Inicia();
             foreach (var oferta in ofertas)
             {

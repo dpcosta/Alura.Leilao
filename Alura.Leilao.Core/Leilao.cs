@@ -28,15 +28,18 @@ namespace Alura.Leilao.Core
 
         public StatusLeilao Status { get; private set; }
 
+        public double ValorDestino { get; }
+
         /// <summary>
         /// Cria uma instância de <see cref="Leilao"/> para <paramref name="descricao"/>.
         /// </summary>
         /// <param name="descricao"> Descrição do bem sendo leiloado.</param>
-        public Leilao(string descricao)
+        public Leilao(string descricao, double valorDestino = 0)
         {
             Descricao = descricao;
             Lances = new List<Lance>();
             Status = StatusLeilao.LeilaoAntesPregao;
+            ValorDestino = valorDestino;
         }
 
         /// <summary>
@@ -73,7 +76,8 @@ namespace Alura.Leilao.Core
                 throw new InvalidOperationException("Leilão não pode ser finalizado antes do pregão começar.");
             }
             Status = StatusLeilao.LeilaoFinalizado;
-            return new ResultadoLeilao(this);
+            return new ResultadoLeilao(this, ValorDestino);
+
         }
     }
 }
