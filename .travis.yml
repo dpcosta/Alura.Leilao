@@ -1,8 +1,13 @@
 language: csharp
+dist: trusty
+mono: false
+dotnet: 2.1.502
+
 solution: Alura.Leilao.sln
+
 install:
-  - nuget restore Alura.Leilao.sln
-  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
+  - dotnet restore
+
 script:
-  - msbuild /p:Configuration=Release Alura.Leilao.sln
-  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Alura.Leilao.Tests/bin/Release/netcoreapp2.1/Alura.Leilao.Tests.dll
+  - dotnet build
+  - dotnet test Tests/Alura.Leilao.Tests/Alura.Leilao.Tests.csproj
