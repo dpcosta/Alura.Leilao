@@ -10,4 +10,4 @@ install:
 
 script:
   - dotnet build
-  - dotnet test Tests/Alura.Leilao.Tests/Alura.Leilao.Tests.csproj
+  - dotnet test Alura.Leilao.Tests/Alura.Leilao.Tests.csproj
