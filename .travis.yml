@@ -3,8 +3,5 @@ dist: trusty
 mono: latest
 dotnet: 2.1.502
 solution: Alura.Leilao.sln
-env:
-  global:
-    secure: YMk4Y0sQlNEOMd3WwrNmG9X1EU2bkD8DeD21c17Ff4X3SuQ34e04T2kFTehRlefPuyT7VQ0lxARvOcWdLcRNEg7p7usljXi8AMdwTUY7kyI0RASCPNhf9+6KlGUKiaYtlhqjFoV8mRTY3lOwyddTVgWF0DhbZtRtGCIwfsipAS6I5z6P3SSZNJJL0CGnLCLVCgZkH0yU4QeCk+zgd1rXY/IeNl1MaN0SyqWQn+ZVd1zN5HihiFjv5klAcxzlez8nP5m32OTEWHKn+3vaU1LuiQTrc29v7UF8VMqn+LXHuJKQrEPNXZBQAiUHWk3/2TXxdHQg66RYR6S/iaqdRAeNBF0A965vG1q39/0UHUoIC8F7sJNeuUc7VvKw/wicJOKheQ9QYu3/USN2tJl218Xy7R9znr3BlA+GyGbDZ3hJ6nHVQ9XqGMx/tNlSkqF4nIBtPSF/wkzgW+GgFyeY+jLXHGt6uM6nWr0Jc8eIo6zhP5nj9l1NFsZ7qT8Y75f9dBfiiXhisV111c5GnScLzXiGhFsXuC8/4nlF+rDTQlN5JAozinEvPXFFjcrSIbpn0y2WH6lD/oQ+D4Yc8bQp6wzIg0dIdTQEfG/ftAVwAKDqTjaz9Mhs0VcEwoMpQYNZR+lsK9tOrx+a3t/TbaeeZswoXtHMdlrasNXJ1GYWyEYKXcU=
 script:
 - ./build.sh --coverallsToken=$COVERALLS_TOKEN
