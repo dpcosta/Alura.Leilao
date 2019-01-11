@@ -1,7 +1,5 @@
-#tool "nuget:?package=coveralls.io&version=1.4.2"
-#addin Cake.Git
-#addin nuget:?package=Nuget.Core
-#addin "nuget:?package=Cake.Coveralls&version=0.9.0"
+#tool coveralls.net&version=0.7.0
+#addin Cake.Coveralls
 
 using System.IO;
 
@@ -79,8 +77,9 @@ Task("UploadCoverage")
 		{
 			Information("Arquivo com os resultados da cobertura não existe!");
 		}
-		CoverallsIo(
+		CoverallsNet(
 			coverageResultsFullFileName, 
+			CoverallsNetReportType.OpenCover,
 			new CoverallsNetSettings()
 			{
 				RepoToken = coverallsToken
