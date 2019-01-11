@@ -74,7 +74,7 @@ Task("UploadCoverage")
 	.Does(() =>
 	{
 		var coverageResultsFullFileName = artifactsDir + coverageResultsFileName;
-		Information(coverageResultsFullFileName);
+		Information($"Token: {coverallsToken}");
 		if(!System.IO.File.Exists(coverageResultsFullFileName))
 		{
 			Information("Arquivo com os resultados da cobertura não existe!");
