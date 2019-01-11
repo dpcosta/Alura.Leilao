@@ -81,7 +81,7 @@ Task("UploadCoverage")
 		}
 		CoverallsIo(
 			coverageResultsFullFileName, 
-			new CoverallsIoSettings()
+			new CoverallsNetSettings()
 			{
 				RepoToken = coverallsToken
 			}
