@@ -11,7 +11,7 @@ namespace Alura.Leilao.Core
                 .DefaultIfEmpty(new Lance(null, 0))
                 .OrderBy(l => l.Valor)
                 .LastOrDefault();
-            return new ResultadoLeilao(leilao, lance);
+            return new ResultadoLeilao(lance);
         }
     }
 

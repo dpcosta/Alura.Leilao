@@ -19,7 +19,7 @@ namespace Alura.Leilao.Core
                 .OrderBy(l => l.Valor)
                 .FirstOrDefault();
 
-            return new ResultadoLeilao(leilao, lance);
+            return new ResultadoLeilao(lance);
 
         }
     }
