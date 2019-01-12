@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\..\Source\cake-build-resources\build.ps1 = ..\..\..\..\Source\cake-build-resources\build.ps1
 		..\..\..\..\Source\cake-build-resources\build.sh = ..\..\..\..\Source\cake-build-resources\build.sh
 		Readme.md = Readme.md
+		sonar-project.properties = sonar-project.properties
 	EndProjectSection
 EndProject
 Global

@@ -3,5 +3,10 @@ dist: trusty
 mono: latest
 dotnet: 2.1.502
 solution: Alura.Leilao.sln
+addons:
+  sonarcloud:
+    organization: "dpcosta-github"
+    token: $SONAR_TOKEN
 script:
 - ./build.sh --coverallsToken=$COVERALLS_TOKEN
+- sonar-scanner
